@@ -4,7 +4,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class CatDto(
-    val id: Int = null,
+    val id: Int,
     val name: String,
     val hunger: Int,
     val happiness: Int,
