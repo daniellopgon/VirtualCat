@@ -1,14 +1,12 @@
-package com.example.virtualcatapp.cat.data.local
+package com.example.virtualcatapp.cat.domain
 
-import com.example.virtualcatapp.cat.domain.Cat
-import com.example.virtualcatapp.cat.domain.SaveCatUseCase
 import com.example.virtualcatapp.cat.domain.repository.CatRepository
 import io.mockk.mockk
 import io.mockk.verify
 import org.junit.Assert.*
 import org.junit.Test
 
-class CatMemLocalDataSourceTest {
+class SaveCatUseCaseTest {
 
     @Test
     fun `when you save a cat in local mem`(){
@@ -24,6 +22,7 @@ class CatMemLocalDataSourceTest {
         verify(exactly = 1) { catRepositoryMockk.saveCat(cat) }
     }
 
+    @Test
     fun `when the name of the cat is empty`(){
         //Given
         val catRepositoryMockk = mockk<CatRepository>(relaxed = true)
@@ -31,10 +30,10 @@ class CatMemLocalDataSourceTest {
         val cat = Cat(2,"")
 
         //When && Then
-        verify(exactly = 1) { catRepositoryMockk.saveCat(cat)  }
         assertThrows(IllegalArgumentException::class.java){
             saveCatUseCase(cat)
         }
+        verify(exactly = 0) { catRepositoryMockk.saveCat(cat)  }
     }
 
 }
