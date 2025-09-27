@@ -2,7 +2,9 @@ package com.example.virtualcatapp.cat.domain
 
 import com.example.virtualcatapp.cat.domain.exceptions.CatAlreadyExistsException
 import com.example.virtualcatapp.cat.domain.repository.CatRepository
+import io.mockk.Runs
 import io.mockk.every
+import io.mockk.just
 import io.mockk.mockk
 import io.mockk.verify
 import org.junit.Assert.*
@@ -30,6 +32,7 @@ class SaveCatUseCaseTest {
         //Given
         val catRepositoryMockk = mockk<CatRepository>(relaxed = true)
         val catExistUseCase = CatExistUseCase(catRepositoryMockk)
+
         val saveCatUseCase = SaveCatUseCase(catRepositoryMockk,catExistUseCase)
         val cat = Cat(2,"")
 
@@ -41,24 +44,31 @@ class SaveCatUseCaseTest {
     }
 
     @Test
-    fun `when saving cat twice then second save throws exception`(){
+    fun `when the id already exist`(){
         //Given
         val catRepositoryMockk = mockk<CatRepository>()
         val catExistUseCase = CatExistUseCase(catRepositoryMockk)
         val saveCatUseCase = SaveCatUseCase(catRepositoryMockk, catExistUseCase)
-        val cat = Cat(1, "Piti")
 
-        every { catRepositoryMockk.exist(cat) } returns false andThen true
+        val cat1 = Cat(1, "Piti")
+        val cat2 = Cat(1, "Taton")
+
+        every{catRepositoryMockk.exist((cat1))} returns false
+        every{catRepositoryMockk.saveCat(cat1)} just Runs
 
         //When
-        saveCatUseCase(cat)
+        saveCatUseCase(cat1)
+        every{catRepositoryMockk.exist(cat2)} returns true
 
         //Then
         assertThrows(CatAlreadyExistsException::class.java) {
-            saveCatUseCase(cat)
+            saveCatUseCase(cat2)
         }
 
-        verify(exactly = 1) { catRepositoryMockk.saveCat(cat) }
-        verify(exactly = 2) { catRepositoryMockk.exist(cat) }
+        verify(exactly = 1) { catRepositoryMockk.exist(cat1) }
+        verify(exactly = 1) { catRepositoryMockk.saveCat(cat1) }
+
+        verify(exactly = 1) { catRepositoryMockk.exist(cat2) }
+        verify(exactly = 0) { catRepositoryMockk.saveCat(cat2) }
     }
 }
