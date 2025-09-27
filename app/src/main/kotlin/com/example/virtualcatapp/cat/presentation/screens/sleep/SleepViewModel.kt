@@ -1,16 +1,17 @@
-package com.example.virtualcatapp.presentation.presentation.di.screens.sleep
+package com.example.virtualcatapp.cat.presentation.screens.sleep
 
-import androidx.compose.runtime.mutableStateOf
-import com.example.virtualcatapp.presentation.presentation.di.models.CatUiState
+import com.example.virtualcatapp.cat.presentation.shared.SharedCatState
 
 class SleepViewModel {
-    var catState = mutableStateOf(CatUiState())
-        private set
+    val catState = SharedCatState.catState
 
     fun sleepWithCat() {
-        catState.value = catState.value.copy(
-            happiness = (catState.value.happiness - 3).coerceAtMost(10),
-            energy = (catState.value.energy + 6).coerceAtLeast(0)
+        val currentState = catState.value
+        SharedCatState.updateCatState(
+            currentState.copy(
+                happiness = (currentState.happiness - 1).coerceAtLeast(0), // Cambié -3 por -1
+                energy = (currentState.energy + 6).coerceAtMost(10) // Cambié coerceAtLeast por coerceAtMost
+            )
         )
     }
 }

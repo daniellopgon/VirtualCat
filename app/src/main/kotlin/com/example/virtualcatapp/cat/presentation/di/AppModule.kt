@@ -1,4 +1,4 @@
-package com.example.virtualcatapp.presentation.presentation.di.di
+package com.example.virtualcatapp.cat.presentation.di
 
 object AppModule {
 }

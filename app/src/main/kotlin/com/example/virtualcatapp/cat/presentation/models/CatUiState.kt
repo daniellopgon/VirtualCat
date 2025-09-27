@@ -1,4 +1,4 @@
-package com.example.virtualcatapp.presentation.presentation.di.models
+package com.example.virtualcatapp.cat.presentation.models
 
 data class CatUiState(
     val hunger: Int = 5,

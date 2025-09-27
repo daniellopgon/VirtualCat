@@ -1,6 +1,4 @@
-/*
 package com.example.virtualcatapp.presentation.presentation.di.navigation
-
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
@@ -12,14 +10,22 @@ import com.example.virtualcatapp.presentation.presentation.di.screens.home.HomeS
 import com.example.virtualcatapp.presentation.presentation.di.screens.sleep.SleepScreen
 
 @Composable
-
-fun AppNavigation(navController: NavHostController, catViewModel: CatViewModel) {
-    NavHost(navController, startDestination = "home") {
-        composable("home") { HomeScreen(navController, catViewModel) }
-        composable("food") { FoodScreen(navController, catViewModel) }
-        composable("game") { GameScreen(navController, catViewModel) }
-        composable("sleep") { SleepScreen(navController, catViewModel) }
+fun AppNavigation(navController: NavHostController) {
+    NavHost(
+        navController = navController,
+        startDestination = "home"
+    ) {
+        composable("home") {
+            HomeScreen(navController)
+        }
+        composable("food") {
+            FoodScreen(navController)
+        }
+        composable("game") {
+            GameScreen(navController)
+        }
+        composable("sleep") {
+            SleepScreen(navController)
+        }
     }
 }
-
- */

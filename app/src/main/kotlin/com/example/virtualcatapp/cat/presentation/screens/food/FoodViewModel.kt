@@ -1,16 +1,17 @@
-package com.example.virtualcatapp.presentation.presentation.di.screens.food
+package com.example.virtualcatapp.cat.presentation.screens.food
 
-import androidx.compose.runtime.mutableStateOf
-import com.example.virtualcatapp.presentation.presentation.di.models.CatUiState
+import com.example.virtualcatapp.cat.presentation.shared.SharedCatState
 
 class FoodViewModel {
-    var catState = mutableStateOf(CatUiState())
-        private set
+    val catState = SharedCatState.catState
 
     fun feedCat() {
-        catState.value = catState.value.copy(
-            hunger = (catState.value.hunger - 3).coerceAtLeast(0),
-            happiness = (catState.value.happiness + 1).coerceAtMost(10)
+        val currentState = catState.value
+        SharedCatState.updateCatState(
+            currentState.copy(
+                hunger = (currentState.hunger - 3).coerceAtLeast(0),
+                happiness = (currentState.happiness + 1).coerceAtMost(10)
+            )
         )
     }
 }

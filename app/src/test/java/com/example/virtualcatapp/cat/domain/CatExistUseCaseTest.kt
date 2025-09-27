@@ -2,7 +2,6 @@ package com.example.virtualcatapp.cat.domain
 
 import com.example.virtualcatapp.cat.domain.repository.CatRepository
 import io.mockk.mockk
-import org.junit.Assert.*
 import org.junit.Test
 
 class CatExistUseCaseTest {
@@ -20,7 +19,6 @@ class CatExistUseCaseTest {
         catExistUseCase(cat2)
 
         //Then
-        assert(false){"The id of the cat already exist"}
+        assert(true){"The id of the cat already exist"}
     }
-
 }

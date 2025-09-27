@@ -1,6 +1,8 @@
 package com.example.virtualcatapp.cat.domain
 
+import com.example.virtualcatapp.cat.domain.exceptions.CatAlreadyExistsException
 import com.example.virtualcatapp.cat.domain.repository.CatRepository
+import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
 import org.junit.Assert.*
@@ -27,7 +29,8 @@ class SaveCatUseCaseTest {
     fun `when the name of the cat is empty`(){
         //Given
         val catRepositoryMockk = mockk<CatRepository>(relaxed = true)
-        val saveCatUseCase = SaveCatUseCase(catRepositoryMockk)
+        val catExistUseCase = CatExistUseCase(catRepositoryMockk)
+        val saveCatUseCase = SaveCatUseCase(catRepositoryMockk,catExistUseCase)
         val cat = Cat(2,"")
 
         //When && Then
@@ -38,19 +41,24 @@ class SaveCatUseCaseTest {
     }
 
     @Test
-    fun `when the id already exist`(){
+    fun `when saving cat twice then second save throws exception`(){
         //Given
-        val catRepositoryMockk = mockk<CatRepository>(relaxed = true)
-        val saveCatUseCase = SaveCatUseCase(catRepositoryMockk)
-        val cat1 = Cat(1,"Piti")
-        val cat2 = Cat(1,"Taton")
+        val catRepositoryMockk = mockk<CatRepository>()
+        val catExistUseCase = CatExistUseCase(catRepositoryMockk)
+        val saveCatUseCase = SaveCatUseCase(catRepositoryMockk, catExistUseCase)
+        val cat = Cat(1, "Piti")
 
-        //When && Then
-        assertThrows(CatAlreadyExistException::class.java){
-            saveCatUseCase(cat1)
-            saveCatUseCase(cat2)
+        every { catRepositoryMockk.exist(cat) } returns false andThen true
+
+        //When
+        saveCatUseCase(cat)
+
+        //Then
+        assertThrows(CatAlreadyExistsException::class.java) {
+            saveCatUseCase(cat)
         }
-        verify(exactly = 0) { catRepositoryMockk.saveCat(cat1)  }
-        verify(exactly = 0) { catRepositoryMockk.saveCat(cat2)  }
+
+        verify(exactly = 1) { catRepositoryMockk.saveCat(cat) }
+        verify(exactly = 2) { catRepositoryMockk.exist(cat) }
     }
 }

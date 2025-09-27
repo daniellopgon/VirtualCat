@@ -1,4 +1,4 @@
-/*package com.example.virtualcatapp.presentation.presentation.di.screens.game
+package com.example.virtualcatapp.presentation.presentation.di.screens.game
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
@@ -7,12 +7,17 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.virtualcatapp.cat.presentation.di.screens.game.GameViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun GameScreen(navController: NavController,catViewModel: CatViewModel) {
+fun GameScreen(
+    navController: NavController,
+    gameViewModel: GameViewModel = viewModel()
+) {
     Scaffold(
-        topBar = { TopAppBar(title = { Text(" Jugar ") }) }
+        topBar = { TopAppBar(title = { Text("Jugar") }) }
     ) { padding ->
         Column(
             modifier = Modifier
@@ -21,20 +26,19 @@ fun GameScreen(navController: NavController,catViewModel: CatViewModel) {
                 .padding(16.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Text(" Aquí jugarás con tu gato ")
+            Text("Aquí jugarás con tu gato")
             Spacer(modifier = Modifier.height(20.dp))
 
             Button(onClick = {
-                catViewModel.playWithCat()
+                gameViewModel.playWithCat()
                 navController.navigate("home")
             }) {
-                Text(" Jugar con el gato y volver ")
+                Text("Jugar con el gato y volver")
             }
 
             Button(onClick = { navController.navigate("home") }) {
-                Text(" Volver al Inicio ")
+                Text("Volver al Inicio")
             }
         }
     }
 }
- */

@@ -1,4 +1,4 @@
-package com.example.virtualcatapp.presentation.presentation.di.theme
+package com.example.virtualcatapp.cat.presentation.theme
 
 import androidx.compose.ui.graphics.Color
 

@@ -9,6 +9,12 @@ import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
+import com.example.virtualcatapp.cat.presentation.theme.DarkText
+import com.example.virtualcatapp.cat.presentation.theme.SoftBackground
+import com.example.virtualcatapp.cat.presentation.theme.SoftBlue
+import com.example.virtualcatapp.cat.presentation.theme.SoftPink
+import com.example.virtualcatapp.cat.presentation.theme.SoftPurple
+import com.example.virtualcatapp.cat.presentation.theme.Typography
 
 private val DarkColorScheme = darkColorScheme(
     primary = SoftPurple,
