@@ -1,8 +1,8 @@
-package com.example.virtualcatapp.cats.repository
+package com.example.virtualcatapp.cat.repository
 
-import com.example.virtualcatapp.cats.data.remote.CatApiRemoteDataSource
-import com.example.virtualcatapp.cats.domain.Cat
-import com.example.virtualcatapp.cats.domain.repository.CatRepository
+import com.example.virtualcatapp.cat.data.remote.CatApiRemoteDataSource
+import com.example.virtualcatapp.cat.domain.Cat
+import com.example.virtualcatapp.cat.domain.repository.CatRepository
 import javax.inject.Inject
 
 class CatRepositoryImpl @Inject constructor(
