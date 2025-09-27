@@ -11,12 +11,16 @@ class CatExistUseCaseTest {
     fun `when the id exist`(){
         //Give
         val catRepositoryMockk = mockk<CatRepository>(relaxed = true)
-        val CatExistUseCaseTest = CatExistUseCase(catRepositoryMockk)
+        val catExistUseCase = CatExistUseCase(catRepositoryMockk)
         val cat1 = Cat(1,"Piti")
         val cat2 = Cat(1,"Taton")
 
         //When
+        catExistUseCase(cat1)
+        catExistUseCase(cat2)
 
+        //Then
+        assert(false){"The id of the cat already exist"}
     }
 
 }
