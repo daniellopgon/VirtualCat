@@ -24,4 +24,17 @@ class CatMemLocalDataSourceTest {
         verify(exactly = 1) { catRepositoryMockk.saveCat(cat) }
     }
 
+    fun `when the name of the cat is empty`(){
+        //Given
+        val catRepositoryMockk = mockk<CatRepository>(relaxed = true)
+        val saveCatUseCase = SaveCatUseCase(catRepositoryMockk)
+        val cat = Cat(2,"")
+
+        //When && Then
+        verify(exactly = 1) { catRepositoryMockk.saveCat(cat)  }
+        assertThrows(IllegalArgumentException::class.java){
+            saveCatUseCase(cat)
+        }
+    }
+
 }
