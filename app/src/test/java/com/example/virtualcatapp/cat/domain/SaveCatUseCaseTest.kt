@@ -35,5 +35,4 @@ class SaveCatUseCaseTest {
         }
         verify(exactly = 0) { catRepositoryMockk.saveCat(cat)  }
     }
-
 }

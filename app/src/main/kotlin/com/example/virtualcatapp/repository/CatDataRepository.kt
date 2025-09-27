@@ -13,4 +13,8 @@ class CatDataRepository (
     override fun saveCat(cat: Cat) {
         catMemLocalDataSource.save(cat)
     }
+
+    override fun exist(cat: Cat): Boolean {
+        return catMemLocalDataSource.exist(cat)
+    }
 }
