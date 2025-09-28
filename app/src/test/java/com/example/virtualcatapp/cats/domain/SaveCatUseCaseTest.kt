@@ -1,10 +1,10 @@
 package com.example.virtualcatapp.cats.domain
 
-import com.example.virtualcatapp.cats.domain.exceptions.CatAlreadyExistsException
-import com.example.virtualcatapp.cats.domain.models.Cat
-import com.example.virtualcatapp.cats.domain.repository.CatRepository
-import com.example.virtualcatapp.cats.domain.usecase.CatExistUseCaseMem
-import com.example.virtualcatapp.cats.domain.usecase.CatSaveUseCaseMem
+import com.example.virtualcatapp.features.cats.domain.exceptions.CatAlreadyExistsException
+import com.example.virtualcatapp.features.cats.domain.models.Cat
+import com.example.virtualcatapp.features.cats.domain.repository.CatRepository
+import com.example.virtualcatapp.features.cats.domain.usecase.CatExistUseCaseMem
+import com.example.virtualcatapp.features.cats.domain.usecase.CatSaveUseCaseMem
 import io.mockk.Runs
 import io.mockk.every
 import io.mockk.just
