@@ -1,13 +1,13 @@
 package com.example.virtualcatapp.cat.data.local
 
 import android.content.Context
-import com.example.virtualcatapp.cat.domain.Cat
+import com.example.virtualcatapp.cat.data.models.Cat
 import java.io.FileNotFoundException
 
 class CatXmlLocalDataSource(private val context: Context) {
     private val fileName = "cats.xml"
 
-    fun save(cat: Cat) {
+    fun savePersistence(cat: Cat) {
         val xmlContent = """
             <?xml version="1.0" encoding ="UTF-8"?>
             <cats>
@@ -26,7 +26,7 @@ class CatXmlLocalDataSource(private val context: Context) {
         }
     }
 
-    fun exist(cat: Cat): Boolean {
+    fun existPersistence(cat: Cat): Boolean {
         return try {
             val inputStream = context.openFileInput(fileName)
             val xmlContent = inputStream.bufferedReader().use { it.readText() }

@@ -1,4 +1,4 @@
-package com.example.virtualcatapp.cat.domain
+package com.example.virtualcatapp.cat.domain.models
 
 class Cat(val id: Int, val name: String) {
     val hunger: Int = 50
