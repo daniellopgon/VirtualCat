@@ -20,7 +20,6 @@ Gradle - Build system
 Android Studio - Development IDE
 
 # Project Structure
-
 app/src/main/
 ├── kotlin/com/example/virtualcatapp/features/cats/
 │   ├── data/
