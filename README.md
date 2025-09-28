@@ -20,6 +20,9 @@ Gradle - Build system
 Android Studio - Development IDE
 
 # Project Structure
+## 📁 Estructura del proyecto
+
+```plaintext
 app/src/main/
 ├── kotlin/com/example/virtualcatapp/features/cats/
 │   ├── data/
@@ -29,7 +32,7 @@ app/src/main/
 │   │   ├── exceptions/     # Custom exceptions
 │   │   ├── models/         # Domain models
 │   │   ├── repository/     # Repository interfaces
-│   │   └── usecase/       # Use cases
+│   │   └── usecase/        # Use cases
 │   └── presentation/
 │       ├── di/            # Dependency injection
 │       ├── models/        # UI models
@@ -43,9 +46,10 @@ app/src/main/
 │       └── theme/         # Themes and styles
 ├── res/
 │   ├── drawable/          # Images (happy cat, sad cat, sleeping cat)
-│   ├── mipmap/           # App icons
-│   ├── values/           # Colors, strings, themes
-│   └── xml/              # Backup and data extraction rules
+│   ├── mipmap/            # App icons
+│   ├── values/            # Colors, strings, themes
+│   └── xml/               # Backup and data extraction rules
+
 
 # Features
 
