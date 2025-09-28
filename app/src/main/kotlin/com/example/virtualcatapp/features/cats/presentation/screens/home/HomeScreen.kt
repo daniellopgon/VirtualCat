@@ -8,7 +8,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.virtualcatapp.cats.presentation.screens.sleep.SleepViewModel
+import com.example.virtualcatapp.features.cats.presentation.screens.sleep.SleepViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

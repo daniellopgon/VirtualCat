@@ -1,4 +1,4 @@
-package com.example.virtualcatapp.presentation.presentation.di.theme
+package com.example.virtualcatapp.features.cats.presentation.theme
 
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -9,12 +9,6 @@ import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
-import com.example.virtualcatapp.cats.presentation.theme.DarkText
-import com.example.virtualcatapp.cats.presentation.theme.SoftBackground
-import com.example.virtualcatapp.cats.presentation.theme.SoftBlue
-import com.example.virtualcatapp.cats.presentation.theme.SoftPink
-import com.example.virtualcatapp.cats.presentation.theme.SoftPurple
-import com.example.virtualcatapp.cats.presentation.theme.Typography
 
 private val DarkColorScheme = darkColorScheme(
     primary = SoftPurple,

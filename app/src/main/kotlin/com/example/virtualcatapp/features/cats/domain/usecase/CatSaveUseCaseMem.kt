@@ -1,8 +1,9 @@
 package com.example.virtualcatapp.features.cats.domain.usecase
 
-import com.example.virtualcatapp.cats.domain.exceptions.CatAlreadyExistsException
-import com.example.virtualcatapp.cats.domain.models.Cat
-import com.example.virtualcatapp.cats.domain.repository.CatRepository
+import com.example.virtualcatapp.features.cats.domain.exceptions.CatAlreadyExistsException
+import com.example.virtualcatapp.features.cats.domain.models.Cat
+import com.example.virtualcatapp.features.cats.domain.repository.CatRepository
+
 
 class CatSaveUseCaseMem(
     val catRepository: CatRepository,
