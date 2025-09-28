@@ -1,7 +1,7 @@
 package com.example.virtualcatapp.cat.domain
 
 import com.example.virtualcatapp.cat.domain.exceptions.CatAlreadyExistsException
-import com.example.virtualcatapp.cat.data.models.Cat
+import com.example.virtualcatapp.cat.domain.models.Cat
 import com.example.virtualcatapp.cat.domain.repository.CatRepository
 import com.example.virtualcatapp.cat.domain.usecase.CatExistUseCaseMem
 import com.example.virtualcatapp.cat.domain.usecase.CatSaveUseCaseMem
@@ -19,59 +19,59 @@ class SaveCatUseCaseTest {
     fun `when you save a cat in local mem`(){
         //Given
         val catRepositoryMockk = mockk<CatRepository>(relaxed = true)
-        val catExistUseCase = CatExistUseCaseMem(catRepositoryMockk)
-        val saveCatUseCase = CatSaveUseCaseMem(catRepositoryMockk, catExistUseCase)
+        val catExistUseCaseMem = CatExistUseCaseMem(catRepositoryMockk)
+        val saveCatUseCaseMem = CatSaveUseCaseMem(catRepositoryMockk, catExistUseCaseMem)
 
         //When
         val cat = Cat(1, "Cova")
-        saveCatUseCase(cat)
+        saveCatUseCaseMem(cat)
 
         //Then
-        verify(exactly = 1) { catRepositoryMockk.saveCat(cat) }
+        verify(exactly = 1) { catRepositoryMockk.saveCatMem(cat) }
     }
 
     @Test
     fun `when the name of the cat is empty`(){
         //Given
         val catRepositoryMockk = mockk<CatRepository>(relaxed = true)
-        val catExistUseCase = CatExistUseCaseMem(catRepositoryMockk)
+        val catExistUseCaseMem = CatExistUseCaseMem(catRepositoryMockk)
 
-        val saveCatUseCase = CatSaveUseCaseMem(catRepositoryMockk, catExistUseCase)
+        val saveCatUseCase = CatSaveUseCaseMem(catRepositoryMockk, catExistUseCaseMem)
         val cat = Cat(2, "")
 
         //When && Then
         assertThrows(IllegalArgumentException::class.java){
             saveCatUseCase(cat)
         }
-        verify(exactly = 0) { catRepositoryMockk.saveCat(cat)  }
+        verify(exactly = 0) { catRepositoryMockk.saveCatMem(cat)  }
     }
 
     @Test
     fun `when the id already exist`(){
         //Given
         val catRepositoryMockk = mockk<CatRepository>()
-        val catExistUseCase = CatExistUseCaseMem(catRepositoryMockk)
-        val saveCatUseCase = CatSaveUseCaseMem(catRepositoryMockk, catExistUseCase)
+        val catExistUseCaseMem = CatExistUseCaseMem(catRepositoryMockk)
+        val saveCatUseCaseMem = CatSaveUseCaseMem(catRepositoryMockk, catExistUseCaseMem)
 
         val cat1 = Cat(1, "Piti")
         val cat2 = Cat(1, "Taton")
 
-        every{catRepositoryMockk.exist((cat1))} returns false
-        every{catRepositoryMockk.saveCat(cat1)} just Runs
+        every{catRepositoryMockk.existCatMem((cat1))} returns false
+        every{catRepositoryMockk.saveCatMem(cat1)} just Runs
 
         //When
-        saveCatUseCase(cat1)
-        every{catRepositoryMockk.exist(cat2)} returns true
+        saveCatUseCaseMem(cat1)
+        every{catRepositoryMockk.existCatMem(cat2)} returns true
 
         //Then
         assertThrows(CatAlreadyExistsException::class.java) {
-            saveCatUseCase(cat2)
+            saveCatUseCaseMem(cat2)
         }
 
-        verify(exactly = 1) { catRepositoryMockk.exist(cat1) }
-        verify(exactly = 1) { catRepositoryMockk.saveCat(cat1) }
+        verify(exactly = 1) { catRepositoryMockk.existCatMem(cat1) }
+        verify(exactly = 1) { catRepositoryMockk.saveCatMem(cat1) }
 
-        verify(exactly = 1) { catRepositoryMockk.exist(cat2) }
-        verify(exactly = 0) { catRepositoryMockk.saveCat(cat2) }
+        verify(exactly = 1) { catRepositoryMockk.existCatMem(cat2) }
+        verify(exactly = 0) { catRepositoryMockk.saveCatMem(cat2) }
     }
 }
