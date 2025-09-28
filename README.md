@@ -20,8 +20,6 @@ Gradle - Build system
 Android Studio - Development IDE
 
 # Project Structure
-## 📁 Estructura del proyecto
-
 ```plaintext
 app/src/main/
 ├── kotlin/com/example/virtualcatapp/features/cats/
@@ -49,10 +47,9 @@ app/src/main/
 │   ├── mipmap/            # App icons
 │   ├── values/            # Colors, strings, themes
 │   └── xml/               # Backup and data extraction rules
-
+```
 
 # Features
-
 Modern interface with Jetpack Compose
 Multiple activities to interact with the cat
 Local data persistence
