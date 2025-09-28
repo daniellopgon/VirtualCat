@@ -1,7 +1,7 @@
 package com.example.virtualcatapp.cat.data.local
 
 import android.content.Context
-import com.example.virtualcatapp.cat.data.models.Cat
+import com.example.virtualcatapp.cat.domain.models.Cat
 import java.io.FileNotFoundException
 
 class CatXmlLocalDataSource(private val context: Context) {

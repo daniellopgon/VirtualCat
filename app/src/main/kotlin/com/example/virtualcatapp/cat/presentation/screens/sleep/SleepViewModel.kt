@@ -9,8 +9,8 @@ class SleepViewModel {
         val currentState = catState.value
         SharedCatState.updateCatState(
             currentState.copy(
-                happiness = (currentState.happiness - 1).coerceAtLeast(0), // Cambié -3 por -1
-                energy = (currentState.energy + 6).coerceAtMost(10) // Cambié coerceAtLeast por coerceAtMost
+                happiness = (currentState.happiness - 1).coerceAtLeast(0),
+                energy = (currentState.energy + 6).coerceAtMost(10)
             )
         )
     }

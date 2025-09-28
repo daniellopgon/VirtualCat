@@ -1,6 +1,7 @@
 package com.example.virtualcatapp.cat.data.local
 
-import com.example.virtualcatapp.cat.data.models.Cat
+import com.example.virtualcatapp.cat.domain.models.Cat
+
 
 class CatMemLocalDataSource {
 
