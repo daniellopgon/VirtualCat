@@ -6,7 +6,6 @@ import java.io.FileNotFoundException
 
 class CatXmlLocalDataSource(private val context: Context) {
     private val fileName = "cats.xml"
-
     fun savePersistence(cat: Cat) {
         val xmlContent = """
             <?xml version="1.0" encoding ="UTF-8"?>
@@ -25,7 +24,6 @@ class CatXmlLocalDataSource(private val context: Context) {
             output.write(xmlContent.toByteArray())
         }
     }
-
     fun existPersistence(cat: Cat): Boolean {
         return try {
             val inputStream = context.openFileInput(fileName)
