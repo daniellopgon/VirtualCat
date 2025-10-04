@@ -4,10 +4,6 @@ import com.example.virtualcatapp.features.cats.domain.models.Cat
 
 
 interface CatRepository {
-    fun saveCatMem(cat: Cat)
-    fun existCatMem(cat: Cat): Boolean
-    fun existCatXml(cat: Cat): Boolean
-    fun saveCatXml(cat: Cat)
-    fun existCatShared(cat: Cat): Boolean
-    fun saveCatShared(cat: Cat)
+    fun saveCatMem(cat: Cat): Result<Cat>
+    fun saveCatXml(cat: Cat): Result<Cat>
 }

@@ -2,7 +2,6 @@ package com.example.virtualcatapp.cats.domain
 
 import com.example.virtualcatapp.features.cats.domain.models.Cat
 import com.example.virtualcatapp.features.cats.domain.repository.CatRepository
-import com.example.virtualcatapp.features.cats.domain.usecase.CatExistUseCaseMem
 import io.mockk.mockk
 import org.junit.Test
 

@@ -1,12 +1,15 @@
 package com.example.virtualcatapp.features.cats.data.local
 
 import android.content.Context
+import com.example.virtualcatapp.features.cats.domain.error.ErrorApp
 import com.example.virtualcatapp.features.cats.domain.models.Cat
-import java.io.FileNotFoundException
 
 class CatXmlLocalDataSource(private val context: Context) {
     private val fileName = "cats.xml"
-    fun savePersistence(cat: Cat) {
+    fun savePersistence(cat: Cat): Result<Cat> {
+        if (cat.name.isEmpty()) return Result.failure(ErrorApp.EmptyName)
+        if (fileName.contains("<id>${cat.id}</id>")) return Result.failure(ErrorApp.IdAlreadyExists)
+
         val xmlContent = """
             <?xml version="1.0" encoding ="UTF-8"?>
             <cats>
@@ -23,15 +26,6 @@ class CatXmlLocalDataSource(private val context: Context) {
         context.openFileOutput(fileName, Context.MODE_PRIVATE).use { output ->
             output.write(xmlContent.toByteArray())
         }
-    }
-    fun existPersistence(cat: Cat): Boolean {
-        return try {
-            val inputStream = context.openFileInput(fileName)
-            val xmlContent = inputStream.bufferedReader().use { it.readText() }
-
-            xmlContent.contains("<id>${cat.id}</id>")
-        } catch (e: FileNotFoundException) {
-            return false
-        }
+        return Result.success(cat)
     }
 }
