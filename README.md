@@ -1,161 +1,75 @@
-# 🐱 Virtual Cat App
+# VirtualCatApp
+An interactive Android virtual pet application developed in Kotlin with Jetpack Compose.
 
-A virtual pet application built with **Clean Architecture** and **SOLID principles** using Kotlin for Android.
+# Description
+VirtualCatApp is an application that allows you to care for and interact with a virtual cat. The application includes different activities such as feeding, playing, and putting your virtual pet to sleep.
 
-## 📋 Project Overview
+# Architecture
+The project follows a clean architecture with the following layers:
 
-This project implements a virtual cat simulation where users can:
-- 🍽️ **Feed** their virtual cat
-- 🎮 **Play** games with the cat
-- 😴 **Put the cat to sleep**
-- 🏠 **Monitor** the cat's overall status
+Data: Management of local data sources (memory and XML)
+Domain: Business logic, use cases, and models
+Presentation: User interface with Jetpack Compose and ViewModels
 
-## 🏗️ Architecture
+# Technologies Used
 
-The project follows **Clean Architecture** principles with three distinct layers:
+Kotlin - Programming language
+Jetpack Compose - Declarative UI
+ViewModel - UI state management
+Gradle - Build system
+Android Studio - Development IDE
 
-### 🎯 Domain Layer
-- **Entities**: Core business objects
-- **Use Cases**: Business logic operations
-- **Repository Interfaces**: Data access contracts
-
-### 💾 Data Layer
-- **Repositories**: Data access implementations
-- **Data Sources**: Multiple storage strategies
-  - **Memory**: Fast in-memory caching
-  - **XML**: Local persistent storage
-  - **API**: Remote data synchronization
-
-### 🎨 Presentation Layer
-- **MVVM Pattern**: Model-View-ViewModel architecture
-- **Compose UI**: Modern declarative UI
-- **ViewModels**: UI state management
-- **Navigation**: Screen flow management
-
-## 📁 Project Structure
-
-```
-com.example.virtualcatapp
-├── data/
-│   ├── local/
-│   │   ├── CatMemLocalDataSource.kt
-│   │   └── CatXmlLocalDataSource.kt
-│   ├── remote/
-│   │   └── CatApiRemoteDataSource.kt
-│   └── CatDataRepository.kt
-├── domain/
-│   ├── entities/
-│   │   └── Cat.kt
-│   ├── repositories/
-│   │   └── CatRepository.kt
-│   └── usecases/
-│       ├── FeedCatUseCase.kt
-│       ├── PlayWithCatUseCase.kt
-│       └── GetCatStateUseCase.kt
-└── presentation/
-    ├── screens/
-    │   ├── food/
-    │   │   ├── FoodScreen.kt
-    │   │   └── FoodViewModel.kt
-    │   ├── game/
-    │   │   ├── GameScreen.kt
-    │   │   └── GameViewModel.kt
-    │   ├── home/
-    │   │   ├── HomeScreen.kt
-    │   │   └── HomeViewModel.kt
-    │   └── sleep/
-    │       ├── SleepScreen.kt
-    │       └── SleepViewModel.kt
-    ├── navigation/
-    │   └── Navigation.kt
-    ├── theme/
-    │   ├── Color.kt
-    │   ├── Theme.kt
-    │   └── Type.kt
-    ├── models/
-    │   └── CatUiState.kt
-    └── MainActivity.kt
+# Project Structure
+```plaintext
+app/src/main/
+├── kotlin/com/example/virtualcatapp/features/cats/
+│   ├── data/
+│   │   ├── local/          # Local data sources
+│   │   └── repository/     # Repository implementations
+│   ├── domain/
+│   │   ├── exceptions/     # Custom exceptions
+│   │   ├── models/         # Domain models
+│   │   ├── repository/     # Repository interfaces
+│   │   └── usecase/        # Use cases
+│   └── presentation/
+│       ├── di/            # Dependency injection
+│       ├── models/        # UI models
+│       ├── navigation/    # Navigation
+│       ├── screens/       # Composable screens
+│       │   ├── food/      # Feeding screen
+│       │   ├── game/      # Game screen
+│       │   ├── home/      # Home screen
+│       │   └── sleep/     # Sleep screen
+│       ├── shared/        # Shared state
+│       └── theme/         # Themes and styles
+├── res/
+│   ├── drawable/          # Images (happy cat, sad cat, sleeping cat)
+│   ├── mipmap/            # App icons
+│   ├── values/            # Colors, strings, themes
+│   └── xml/               # Backup and data extraction rules
 ```
 
-## 🐱 Cat Entity
+# Features
+Modern interface with Jetpack Compose
+Multiple activities to interact with the cat
+Local data persistence
+Navigation between screens
+Cat emotional states (happy, sad, sleeping)
+Clean and maintainable architecture
 
-The virtual cat has the following properties:
-- **ID**: Unique identifier
-- **Name**: Cat's name
-- **Hunger**: Hunger level (0-100)
-- **Happiness**: Mood level (0-100)
-- **Energy**: Energy level (0-100)
+# How to Run
+Clone the repository
+Open the project in Android Studio
+Sync the project with Gradle files
+Run on an emulator or physical device
 
-## 🛠️ Technology Stack
+# Requirements
+Android Studio Hedgehog or higher
+Android SDK 34 (Android 14)
+Gradle 8.11.1
 
-- **Language**: Kotlin
-- **UI Framework**: Jetpack Compose
-- **Architecture**: Clean Architecture + MVVM
-- **Design Patterns**: Repository Pattern, Dependency Injection
-- **Local Storage**: XML files, In-memory caching
-- **Remote**: REST API (future implementation)
+# Testing
+The project includes unit tests for use cases in app/src/test/java/
 
-## ✨ SOLID Principles Implementation
-
-- **S**ingle Responsibility: Each class has one specific purpose
-- **O**pen/Closed: Extensible through interfaces
-- **L**iskov Substitution: Interface implementations are interchangeable
-- **I**nterface Segregation: Specific, focused interfaces
-- **D**ependency Inversion: High-level modules depend on abstractions
-
-## 🚀 Features
-
-### Current Implementation
-- ✅ Clean Architecture setup
-- ✅ Domain entities and use cases
-- ✅ Multiple data sources (Memory, XML, API interfaces)
-- ✅ MVVM presentation layer
-- ✅ Navigation between screens
-
-### Planned Features
-- 🔄 Complete XML persistence implementation
-- 🌐 REST API integration
-- 📊 Cat statistics and history
-- 🎨 Enhanced UI animations
-- 🧪 Unit and integration tests
-- 💉 Dependency injection with Hilt
-
-## 📱 Screens
-
-1. **Home Screen**: Main cat status display
-2. **Food Screen**: Feed the virtual cat
-3. **Game Screen**: Play mini-games with the cat
-4. **Sleep Screen**: Rest mode for the cat
-
-## 🧪 Testing Strategy
-
-- **Unit Tests**: Domain layer use cases
-- **Integration Tests**: Repository implementations
-- **UI Tests**: Screen functionality and navigation
-
-## 🔧 Setup & Installation
-
-1. Clone the repository
-```bash
-git clone https://github.com/yourusername/virtual-cat-app.git
-```
-
-2. Open in Android Studio
-
-3. Build and run the project
-
-## 📈 Development Status
-
-🚧 **Work in Progress** - This is an educational project demonstrating Clean Architecture principles in Android development.
-
-## 🤝 Contributing
-
-This is a learning project. Feel free to fork and experiment with your own implementations!
-
-## 📄 License
-
-This project is for educational purposes.
-
----
-
-*Built with ❤️ using Clean Architecture and SOLID principles*
+License
+This project is under the MIT License.
