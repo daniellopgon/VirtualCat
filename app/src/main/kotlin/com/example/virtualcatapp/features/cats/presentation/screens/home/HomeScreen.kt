@@ -82,7 +82,7 @@ fun HomeScreen(
                         modifier = Modifier.fillMaxWidth()
                     )
 
-                    Text("⚡ Energía: ${catState.energy}/10")
+                    Text("Energía: ${catState.energy}/10")
                     LinearProgressIndicator(
                         progress = catState.energy / 10f,
                         modifier = Modifier.fillMaxWidth()
