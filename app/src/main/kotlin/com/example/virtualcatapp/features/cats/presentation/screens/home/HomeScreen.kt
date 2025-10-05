@@ -1,14 +1,18 @@
 package com.example.virtualcatapp.features.cats.presentation.screens.home
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.virtualcatapp.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -17,6 +21,13 @@ fun HomeScreen(
     homeViewModel: HomeViewModel = viewModel()
 ) {
     val catState by homeViewModel.catState
+
+    val catImageRes = when {
+        catState.energy <= 3 -> R.drawable.cat_sleeping
+        catState.happiness <= 3 -> R.drawable.cat_sad
+        catState.happiness >= 7 -> R.drawable.cat_happy
+        else -> R.drawable.cat_happy
+    }
 
     Scaffold(
         topBar = { TopAppBar(title = { Text("Mi Gato Virtual") }) }
@@ -29,6 +40,19 @@ fun HomeScreen(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
+            Card(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(200.dp),
+                elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
+            ) {
+                Image(
+                    painter = painterResource(id = catImageRes),
+                    contentDescription = "Estado del gato",
+                    modifier = Modifier.fillMaxSize(),
+                    contentScale = ContentScale.Crop
+                )
+            }
             Text(
                 text = "Estado del Gato",
                 style = MaterialTheme.typography.headlineMedium
