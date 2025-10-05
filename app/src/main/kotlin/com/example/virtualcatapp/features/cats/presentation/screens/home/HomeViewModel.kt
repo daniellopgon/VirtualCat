@@ -1,9 +1,10 @@
 package com.example.virtualcatapp.features.cats.presentation.screens.home
 
 import androidx.lifecycle.ViewModel
-import com.example.virtualcatapp.features.cats.presentation.shared.SharedCatState
+import com.example.virtualcatapp.features.cats.domain.usecase.GetCatUseCase
 
-
-class HomeViewModel: ViewModel() {
-    val catState = SharedCatState.catState
+class HomeViewModel(
+    private val observeCatUseCase: GetCatUseCase
+) : ViewModel() {
+    val catState = observeCatUseCase()
 }

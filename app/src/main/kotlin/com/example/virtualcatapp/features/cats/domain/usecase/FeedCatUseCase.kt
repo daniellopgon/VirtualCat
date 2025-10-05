@@ -1,6 +1,5 @@
 package com.example.virtualcatapp.features.cats.domain.usecase
 
-import androidx.room.util.copy
 import com.example.virtualcatapp.features.cats.domain.repository.CatRepository
 
 class FeedCatUseCase(

@@ -7,10 +7,10 @@ import com.example.virtualcatapp.features.cats.domain.usecase.GetCatUseCase
 
 class FoodViewModel(
     private val feedCatUseCase: FeedCatUseCase,
-    getCatStateUseCase: GetCatUseCase
+    private val observeCatUseCase: GetCatUseCase
 ) : ViewModel() {
 
-    val catState = getCatStateUseCase()
+    val catState = observeCatUseCase()
 
     fun feedCat() {
         feedCatUseCase()
