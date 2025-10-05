@@ -11,7 +11,7 @@ class FoodViewModel: ViewModel() {
         val currentState = catState.value
         SharedCatState.updateCatState(
             currentState.copy(
-                hunger = (currentState.hunger - 3).coerceAtLeast(0),
+                hunger = (currentState.hunger + 3).coerceAtLeast(0),
                 happiness = (currentState.happiness + 1).coerceAtMost(10)
             )
         )
