@@ -1,9 +1,10 @@
 package com.example.virtualcatapp.features.cats.presentation.screens.game
 
+import androidx.lifecycle.ViewModel
 import com.example.virtualcatapp.features.cats.presentation.shared.SharedCatState
 
 
-class GameViewModel {
+class GameViewModel : ViewModel () {
     val catState = SharedCatState.catState
 
     fun playWithCat() {

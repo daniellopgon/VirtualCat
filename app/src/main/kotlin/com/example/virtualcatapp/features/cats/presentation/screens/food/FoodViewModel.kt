@@ -1,9 +1,10 @@
 package com.example.virtualcatapp.features.cats.presentation.screens.food
 
+import androidx.lifecycle.ViewModel
 import com.example.virtualcatapp.features.cats.presentation.shared.SharedCatState
 
 
-class FoodViewModel {
+class FoodViewModel: ViewModel() {
     val catState = SharedCatState.catState
 
     fun feedCat() {

@@ -1,9 +1,10 @@
 package com.example.virtualcatapp.features.cats.presentation.screens.sleep
 
+import androidx.lifecycle.ViewModel
 import com.example.virtualcatapp.features.cats.presentation.shared.SharedCatState
 
 
-class SleepViewModel {
+class SleepViewModel: ViewModel() {
     val catState = SharedCatState.catState
 
     fun sleepWithCat() {
