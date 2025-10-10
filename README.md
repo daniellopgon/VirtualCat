@@ -70,6 +70,3 @@ Gradle 8.11.1
 
 # Testing
 The project includes unit tests for use cases in app/src/test/java/
-
-License
-This project is under the MIT License.
