@@ -4,14 +4,15 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
 import com.example.virtualcatapp.R
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -20,7 +21,8 @@ fun HomeScreen(
     navController: NavController,
     homeViewModel: HomeViewModel = viewModel()
 ) {
-    val catState by homeViewModel.catState
+    // Correctly collect the state from the ViewModel
+    val catState by homeViewModel.catState.collectAsState()
 
     val catImageRes = when {
         catState.energy <= 3 -> R.drawable.cat_sleeping
@@ -53,6 +55,7 @@ fun HomeScreen(
                     contentScale = ContentScale.Crop
                 )
             }
+
             Text(
                 text = "Estado del Gato",
                 style = MaterialTheme.typography.headlineMedium

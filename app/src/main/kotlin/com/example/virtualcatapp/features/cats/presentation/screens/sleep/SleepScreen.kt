@@ -23,19 +23,32 @@ fun SleepScreen(
                 .fillMaxSize()
                 .padding(padding)
                 .padding(16.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
         ) {
-            Text("Aquí puedes dormir a tu gato")
+            Text(
+                "Aquí puedes dormir a tu gato",
+                style = MaterialTheme.typography.bodyLarge
+            )
+
             Spacer(modifier = Modifier.height(20.dp))
 
-            Button(onClick = {
-                sleepViewModel.sleepWithCat()
-                navController.navigate("home")
-            }) {
+            Button(
+                onClick = {
+                    sleepViewModel.sleepCat()
+                    navController.navigate("home")
+                },
+                modifier = Modifier.fillMaxWidth()
+            ) {
                 Text("Dormir y volver")
             }
 
-            Button(onClick = { navController.navigate("home") }) {
+            Spacer(modifier = Modifier.height(10.dp))
+
+            Button(
+                onClick = { navController.navigate("home") },
+                modifier = Modifier.fillMaxWidth()
+            ) {
                 Text("Volver al Inicio")
             }
         }

@@ -13,7 +13,7 @@ class CatDataRepository(
     private val catXmlLocalDataSource: CatXmlLocalDataSource,
 ) : CatRepository {
 
-    private val _catState = MutableStateFlow(Cat())
+    private val _catState = MutableStateFlow(Cat(id = 1, name = "Gato"))
 
     override fun getCat(): Cat = _catState.value
 

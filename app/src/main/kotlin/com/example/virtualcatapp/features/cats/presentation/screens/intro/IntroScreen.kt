@@ -3,6 +3,7 @@ package com.example.virtualcatapp.features.cats.presentation.screens.intro
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -13,20 +14,40 @@ fun IntroScreen(
     navController: NavController,
     introViewModel: IntroViewModel = viewModel()
 ) {
-
     var name by remember { mutableStateOf("") }
 
-    Column(modifier = Modifier.fillMaxSize().padding(16.dp)) {
-        Text("Crea tu gato")
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
+        Text(
+            "Crea tu gato",
+            style = MaterialTheme.typography.headlineMedium
+        )
+
+        Spacer(modifier = Modifier.height(20.dp))
+
         TextField(
             value = name,
             onValueChange = { name = it },
-            label = { Text("Nombre") }
+            label = { Text("Nombre") },
+            modifier = Modifier.fillMaxWidth()
         )
-        Button(onClick = {
-            introViewModel.saveCat(name)
-            navController.navigate("home")
-        }) {
+
+        Spacer(modifier = Modifier.height(20.dp))
+
+        Button(
+            onClick = {
+                if (name.isNotBlank()) {
+                    introViewModel.saveCat()
+                    navController.navigate("home")
+                }
+            },
+            modifier = Modifier.fillMaxWidth()
+        ) {
             Text("Guardar")
         }
     }
